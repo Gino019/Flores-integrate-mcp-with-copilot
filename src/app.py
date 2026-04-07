@@ -5,10 +5,14 @@ A super simple FastAPI application that allows students to view and sign up
 for extracurricular activities at Mergington High School.
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from pydantic import BaseModel
 import os
+import json
+import secrets
 from pathlib import Path
 
 app = FastAPI(title="Mergington High School API",
